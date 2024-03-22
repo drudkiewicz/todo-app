@@ -41,3 +41,12 @@ Start webapp server:
 cd app
 npm start
 ```
+
+## Testing
+
+For now the project contains only server routes tests:
+
+```
+cd server
+npm test
+```
