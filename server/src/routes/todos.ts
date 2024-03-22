@@ -35,7 +35,7 @@ export async function getById(req: Request, res: Response) {
   if (todo) {
     res.status(200).json(todo);
   } else {
-    res.status(404).send("404 - Not found");
+    res.status(404).send("Todo not found");
   }
 }
 
@@ -51,10 +51,14 @@ export async function create(req: Request, res: Response) {
   const result = validationResult(req);
 
   if (!result.isEmpty()) {
-    return res.send({ errors: result.array() });
+    return res.status(403).send({ errors: result.array() });
   }
 
-  const todo = await models.todo.create(req.body);
+  const data = matchedData(req);
+
+  const todo = await models.todo.create({
+    title: data.title,
+  });
 
   res.status(201).json(todo.toJSON());
 }
@@ -65,7 +69,7 @@ export async function update(req: Request, res: Response) {
   const result = validationResult(req);
 
   if (!result.isEmpty()) {
-    return res.send({ errors: result.array() });
+    return res.status(403).send({ errors: result.array() });
   }
 
   const data = matchedData(req);
@@ -77,6 +81,10 @@ export async function update(req: Request, res: Response) {
       },
       returning: true,
     });
+
+    if (!todo) {
+      return res.status(404).send("Todo not found");
+    }
 
     res.status(200).json(todo.toJSON());
   } else {

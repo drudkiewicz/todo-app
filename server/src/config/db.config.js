@@ -20,7 +20,9 @@ export async function assertDatabaseConnectionOk() {
     console.log("Database connection OK!");
   } catch (error) {
     console.log("Unable to connect to the database:");
-    console.log(error.message);
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
     process.exit(1);
   }
 
