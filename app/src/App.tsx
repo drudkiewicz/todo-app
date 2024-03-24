@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import TodoList from "./components/TodoList";
-import { AddTodoForm } from "./components/AddTodoForm";
+import AddTodoForm from "./components/AddTodoForm";
 
 function App() {
   return (

@@ -36,5 +36,5 @@ function DeleteTodo({ id }: { id: string }) {
     </button>
   );
 }
+
 export default DeleteTodo;
-// text-black-50 text-decoration-line-through

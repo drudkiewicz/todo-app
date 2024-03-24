@@ -37,6 +37,7 @@ function TodoItem({ todo }: { todo: Todo }) {
       style={{
         minHeight: "50px",
       }}
+      data-testid={`todo-${todo.id}`}
     >
       <div className="form-check">
         <input
@@ -76,5 +77,5 @@ function TodoItem({ todo }: { todo: Todo }) {
     </div>
   );
 }
+
 export default TodoItem;
-//

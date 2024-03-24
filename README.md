@@ -44,9 +44,16 @@ npm start
 
 ## Testing
 
-For now the project contains only server routes tests:
+Run server routes tests:
 
 ```
 cd server
+npm test
+```
+
+Run react app tests:
+
+```
+cd app
 npm test
 ```

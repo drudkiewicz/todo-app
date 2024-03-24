@@ -1,15 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import todosReducer from "./todos.reducer";
 
-const store = configureStore({
-  reducer: {
-    todos: todosReducer,
-  },
+const rootReducer = combineReducers({
+  todos: todosReducer,
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof rootReducer>;
 
-export default store;
+export function setupStore(preloadedState?: Partial<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+}
+
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];

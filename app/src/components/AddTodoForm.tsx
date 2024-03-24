@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { addNewTodo } from "../state/todos.reducer";
 import { useAppDispatch } from "../state/hooks";
 
-export const AddTodoForm = () => {
+function AddTodoForm() {
   const dispatch = useAppDispatch();
 
   const [title, setTitle] = useState("");
@@ -14,7 +14,6 @@ export const AddTodoForm = () => {
     if (canSave) {
       try {
         setAddRequestStatus("pending");
-
         await dispatch(addNewTodo({ title })).unwrap();
         setTitle("");
       } catch (err) {
@@ -45,4 +44,6 @@ export const AddTodoForm = () => {
       </button>
     </div>
   );
-};
+}
+
+export default AddTodoForm;
